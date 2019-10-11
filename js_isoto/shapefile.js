@@ -24,6 +24,10 @@ d3.json(link, function(data) {
   L.geoJson(data).addTo(h_town_map);
 });
 
+OpenLayers._getScriptLocation = function(){
+  return "http://rs1.adc4gis.com/js/openlayers/2.9.1/";
+};
+
 var parser = new OpenLayer.Format.GeoJSON(),
     features;
 
@@ -31,6 +35,17 @@ new Shapefile({
     shp: "myshape.shp",
     dbf: "myshape.dbf"
 }, function (data) {
-    features = parser.read(data.geojson);
+    features = parser.read(h_town.geojson);
 });
+
+// var shapefile = require("shapefile");
+ 
+// shapefile.open("Houston_Police_Division/HoustonPoliceDivision.shp")
+//   .then(source => source.read()
+//     .then(function log(result) {
+//       if (result.done) return;
+//       console.log(result.value);
+//       return source.read().then(log);
+//     }))
+//   .catch(error => console.error(error.stack));
 
