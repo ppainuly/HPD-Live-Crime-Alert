@@ -2,7 +2,7 @@
 
 // creating map of Houston: 
 // Creating map object
-var map = L.map("map", {
+var h_town_map = L.map("map", {
     center: [29.7604, -95.3698],
     zoom: 11
   });
@@ -13,4 +13,27 @@ var map = L.map("map", {
     maxZoom: 18,
     id: "mapbox.streets",
     accessToken: API_KEY
-  }).addTo(map);
+  }).addTo(h_town_map);
+
+
+var link = "data.h_town.geojson";
+
+  // Grabbing our GeoJSON data..
+d3.json(link, function(data) {
+  // Creating a GeoJSON layer with the retrieved data
+  L.geoJson(data).addTo(h_town_map);
+});
+
+// npm install shapefile@0.6.6
+
+// var shapefile = require("shapefile");
+
+// shapefile.open("example.shp")
+//   .then(source => source.read()
+//     .then(function log(result) {
+//       if (result.done) return;
+//       console.log(result.value);
+//       return source.read().then(log);
+//     }))
+//   .catch(error => console.error(error.stack));
+
