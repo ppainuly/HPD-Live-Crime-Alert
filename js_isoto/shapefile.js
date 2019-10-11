@@ -24,16 +24,13 @@ d3.json(link, function(data) {
   L.geoJson(data).addTo(h_town_map);
 });
 
-// npm install shapefile@0.6.6
+var parser = new OpenLayer.Format.GeoJSON(),
+    features;
 
-// var shapefile = require("shapefile");
-
-// shapefile.open("example.shp")
-//   .then(source => source.read()
-//     .then(function log(result) {
-//       if (result.done) return;
-//       console.log(result.value);
-//       return source.read().then(log);
-//     }))
-//   .catch(error => console.error(error.stack));
+new Shapefile({
+    shp: "myshape.shp",
+    dbf: "myshape.dbf"
+}, function (data) {
+    features = parser.read(data.geojson);
+});
 
