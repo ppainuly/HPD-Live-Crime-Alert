@@ -1,18 +1,33 @@
-// //working on pulling API from Crimemap//
 
-// // Creating map object
-// var crimeMap = L.map("map", {
-//     center: [29.7604, -95.3698],
-//     zoom: 11
-//   });
-  
-//   // Adding tile layer to the map
-//   L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-//     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-//     maxZoom: 18,
-//     id: "mapbox.streets",
-//     accessToken: API_KEY
-//   }).addTo(crimeMap);
+{
+  location: [29.7604, -95.3698],
+  name: "Houston",
+  population: "2,296,224"
+},
+{
+  location: [34.0522, -118.2437],
+  name: "Los Angeles",
+  population: "3,971,883"
+},
+{
+  location: [41.2524, -95.9980],
+  name: "Omaha",
+  population: "446,599"
+},
+{
+  location: [46.8772, -96.7898],
+  name: "Fargo",
+  population: "245,571"
+}
+];
+
+// Loop through the cities array and create one marker for each city, bind a popup containing its name and population add it to the map
+for (var i = 0; i < cities.length; i++) {
+  var city = cities[i];
+  L.marker(city.location)
+    .bindPopup("<h1>" + city.name + "</h1> <hr> <h3>Population " + city.population + "</h3>")
+    .addTo(myMap);
+}
 
 //   // Grabbing our GeoJSON data..
 // d3.json(link, function(data) {
@@ -57,38 +72,4 @@
   
   // });
   
-  var myMap = L.map("map", {
-    center: [37.7749, -122.4194],
-    zoom: 13
-  });
-  
-  L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-    attribution: "Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>",
-    maxZoom: 18,
-    id: "mapbox.streets",
-    accessToken: API_KEY
-  }).addTo(myMap);
-  
-  var url = "https://moto.data.socrata.com/resource/p6kq-vsa3.json?$limit=10000";
-  
-  d3.json(url, function(response) {
-  
-    console.log(response);
-  
-    var heatArray = [];
-  
-    for (var i = 0; i < response.length; i++) {
-      var location = response[i].location;
-  
-      if (location) {
-        heatArray.push([location.coordinates[1], location.coordinates[0]]);
-      }
-    }
-  
-    var heat = L.heatLayer(heatArray, {
-      radius: 20,
-      blur: 35
-    }).addTo(myMap);
-  
-  });
   
