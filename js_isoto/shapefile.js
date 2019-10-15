@@ -24,19 +24,7 @@ d3.json(link, function(data) {
   L.geoJson(data).addTo(h_town_map);
 });
 
-var policeStations = "Houston_Police_Stations.geojson";
 
-d3.json(policeStations, function(response){
-  console.log(response); 
-
-  for (var i = 0, i < response.length; i++) {
-    var location = response[i].location; 
-
-    if (location) {
-      L.marker([location.coordinates[1], location.coordinates[0]]).addTo(h_town_map);
-    }
-  }
-});
 
 
 // var parser = new OpenLayer.Format.GeoJSON(),
