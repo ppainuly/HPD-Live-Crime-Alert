@@ -5,6 +5,16 @@ var myMap = L.map("map", {
     zoom: 10
   });
 
+  // var htxIcon = new L.Icon({
+  //   iconUrl: '../img/icons8-policeman-female-40.png',
+  //   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  //   iconSize: [30, 30],
+  //   iconAnchor: [12, 41],
+  //   popupAnchor: [1, -34],
+  //   shadowSize: [35, 35]
+  // });
+  // let marker3 = L.marker([29.760427, -95.369804],{icon: htxIcon}).addTo(myMap);
+  //   marker3.bindPopup("Houston")
 
   
   //Add a tile layer
