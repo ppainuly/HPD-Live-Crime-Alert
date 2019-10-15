@@ -1,0 +1,82 @@
+// Create a map object
+console.log("Beginning project");
+var myMap = L.map("map", {
+    center: [29.7604, -95.3698],
+    zoom: 10
+  });
+
+
+  
+  //Add a tile layer
+  L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+    attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+    maxZoom: 18,
+    id: "mapbox.streets",
+    accessToken: API_KEY
+  }).addTo(myMap);
+  var sidebar = L.control.sidebar('sidebar').addTo(myMap);
+  
+  // An array containing each city's time, location, and address
+  var incidents = [{
+    location: [29.61469,-95.217551],
+    time: "10/10/2019 23:05",
+    type:"TRAFFIC HAZARD/NON URGENT",
+    address: "11400 FUQUA ST"
+  },
+  {
+    location: [29.8414568627451,-95.4991699019608],
+    time: "10/10/2019 22:38",
+    type:"CRASH/MAJOR/NON FATAL",
+    address: "13098 COOPERS HAWK DR"
+  },
+  {
+    location: [29.790866,-95.549237],
+    time: "10/10/2019 22:38",
+    type:"CRASH/MINOR",
+    address: "20698 ALDINE WESTFIELD RD"
+  },
+  {
+    location: [29.6053344,-95.4772572],
+    time: "10/10/2019 22:31",
+    type:"CRASH/MAJOR/NON FATAL",
+    address: "7200 PINEMONT DR"
+  },
+  {
+    location: [29.613215,-95.445998],
+    time: "10/10/2019 22:30",
+    type:"TRAFFIC HAZARD/NON URGENT",
+    address: "10200 WESTVIEW DR"
+  }
+  ];
+
+//   //3d map
+//   var myMap = L.eeGeo.map('map', API_KEY_3D, {
+//     center: incidents[0].location,
+//     zoom: 15
+//   });
+//   myMap.themes.setTheme(
+//     L.eeGeo.themes.season.Autumn,
+//     L.eeGeo.themes.time.Day,
+//     L.eeGeo.themes.weather.Clear
+// );
+  
+  // Loop through the incidents array and create one marker for each incident, bind a popup containing its time,type and address add it to the map
+      incidents.forEach(function(incident){
+        console.log(incident);
+        //L.marker(incident.location).addTo(map);
+
+        //3d map and marker
+        // myMap.setView(incidents[0].location, 16, {headingDegrees: 204.374, tiltDegrees:15.0});
+        // var marker = L.eeGeo.marker(incident.location, {
+        //     elevation: 260.0,
+        //     title: "Incident"
+        //   }).addTo(myMap);
+    
+        //   marker.bindPopup("<h1>" + incident.time + "</h1> <hr> <h3>address " + incident.address + "</h3> <hr> <h4>address " + incident.type + "</h4>").openPopup();
+
+         L.marker(incident.location)
+           .bindPopup("<h1>" + incident.time + "</h1> <hr> <h3>address " + incident.address + "</h3> <hr> <h4>address " + incident.type + "</h4>")
+           .addTo(myMap);
+
+      });
+  
