@@ -168,11 +168,10 @@ for (var i = 0; i < stations.length; i++) {
   var station = stations[i];
   var policeWomanIcon = new L.Icon({
     iconUrl: '../data/policeFemale.png',
-    shadowUrl: 'https://i7.pngguru.com/preview/616/398/526/circle-gradient-cartesian-coordinate-system-shadow-shadows.jpg',
-    iconSize: [40, 50],
+    // shadowUrl: 'https://i7.pngguru.com/preview/616/398/526/circle-gradient-cartesian-coordinate-system-shadow-shadows.jpg',
+    iconSize: [30, 30],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
-    shadowSize: [41, 41]
   });  
   console.log(station.location)
   L.marker(station.location, {icon: policeWomanIcon}) 
