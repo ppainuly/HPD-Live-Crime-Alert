@@ -159,18 +159,19 @@ var stations = [
   }
 ];
 
-var policeWomanIcon = new L.Icon({
-  iconUrl: "https://icons8.com/icons/set/policeman-female",
-  // shadowUrl: 'https://i7.pngguru.com/preview/616/398/526/circle-gradient-cartesian-coordinate-system-shadow-shadows.jpg',
-  iconSize: [40, 50],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41]
-});
 
 for (var i = 0; i < stations.length; i++) {
   var station = stations[i];
-  L.marker([station.location], {icon: policeWomanIcon}) 
+  var policeWomanIcon = new L.Icon({
+    iconUrl: '../data/policeFemale.png',
+    shadowUrl: 'https://i7.pngguru.com/preview/616/398/526/circle-gradient-cartesian-coordinate-system-shadow-shadows.jpg',
+    iconSize: [40, 50],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });  
+  console.log(station.location)
+  L.marker(station.location, {icon: policeWomanIcon}) 
     .bindPopup("<h1>" + station.stationName + "</h1> <hr> <h3>Aaddress & Info: " + station.legend + "</h3>")
     .addTo(h_town_map);
 }
