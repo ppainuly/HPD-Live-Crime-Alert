@@ -96,9 +96,9 @@ var myMap = L.map("map", {
             markerColor: 'blue'
             });
             L.marker(incident.location, {icon: numMarker})
-              .bindPopup("<h2>" + incident.type + "</h2>   <hr><h3>" + incident.address + "</h3> <hr> <h4>" + incident.time + "</h4>")
+              .bindPopup("<h3>" + incident.type + "</h3>   <hr><h4>" + incident.address + "</h4> <hr> <h4>" + incident.time + "</h4>")
               .addTo(myMap);
-            popup.push("<h2>" + incident.type + "</h2> <hr> <h3>" + incident.address + "</h3> <hr> <h4>" + incident.time + "</h4>");
+            popup.push("<h3>" + incident.type + "</h3> <hr> <h4>" + incident.address + "</h4> <hr> <h4>" + incident.time + "</h4>");
 
       });
       console.log(latlon)
