@@ -24,13 +24,39 @@ d3.json(link, function(data) {
   L.geoJson(data).addTo(h_town_map);
 });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> isoto
 var parser = new OpenLayer.Format.GeoJSON(),
     features;
 
 new Shapefile({
+<<<<<<< HEAD
     shp: "Houston_Police_Division/Houston_Police_Division.shp",
     dbf: "Houston_Police_Division/Houston_Police_Division.dbf"
 }, function (data) {
     features = parser.read(data.geojson);
 });
 
+=======
+    shp: "Houston_Police_Division.shp",
+    dbf: "Houston_Police_Division.dbf"
+}, function (data) {
+    features = parser.read(h_town.geojson);
+});
+
+// var shapefile = require("shapefile");
+ 
+// shapefile.open("Houston_Police_Division/HoustonPoliceDivision.shp")
+//   .then(source => source.read()
+//     .then(function log(result) {
+//       if (result.done) return;
+//       console.log(result.value);
+//       return source.read().then(log);
+//     }))
+//   .catch(error => console.error(error.stack));
+
+  var Shapefile = new L.Shapefile("Houston_Police_Division.zip"); shpfile.addTo(h_town_map);
+
+>>>>>>> isoto
