@@ -24,18 +24,46 @@ d3.json(link, function(data) {
   L.geoJson(data).addTo(h_town_map);
 });
 
+var policeStations = "Houston_Police_Stations.geojson";
 
-var parser = new OpenLayer.Format.GeoJSON(),
-    features;
+d3.json(policeStations, function(response){
+  console.log(response); 
 
-new Shapefile({
-    shp: "Houston_Police_Division.shp",
-    dbf: "Houston_Police_Division.dbf"
-}, function (data) {
-    features = parser.read(h_town.geojson);
+  for (var i = 0, i < response.length; i++) {
+    var location = response[i].location; 
+
+    if (location) {
+      L.marker([location.coordinates[1], location.coordinates[0]]).addTo(h_town_map);
+    }
+  }
 });
 
-// var shapefile = require("shapefile");
+
+// var parser = new OpenLayer.Format.GeoJSON(),
+//     features;
+
+// new Shapefile({
+//     shp: "Houston_Police_Division.shp",
+//     dbf: "Houston_Police_Division.dbf"
+// }, function (data) {
+//     features = parser.read(h_town.geojson);
+// });
+
+// var shapefile = new L.Shapefile("Housotn_Police_Divisions.zip", {
+//   onEachFeature: function(feature,layer) {
+//     if (feature.properties) {
+//       layer.bindPopup(Object.keys(feature.properties).map(function(k){
+//         return k + ":" + feature.properties[k];
+//       }))
+//     }
+//   }
+// });
+
+// shapefile.addTo(h_town_map);
+// shapefile.once("data:loaded": function(){
+//   console.log("finished loaded shapefile");
+// });
+
  
 // shapefile.open("Houston_Police_Division/HoustonPoliceDivision.shp")
 //   .then(source => source.read()
@@ -46,5 +74,5 @@ new Shapefile({
 //     }))
 //   .catch(error => console.error(error.stack));
 
-  var Shapefile = new L.Shapefile("Houston_Police_Division.zip"); shpfile.addTo(h_town_map);
+//   var Shapefile = new L.Shapefile("Houston_Police_Division.zip"); shpfile.addTo(h_town_map);
 
