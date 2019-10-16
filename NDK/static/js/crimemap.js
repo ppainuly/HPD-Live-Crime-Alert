@@ -1,34 +1,66 @@
-// Shapefiles: police stations and districts
+// Create a map object
+var crimeMap = L.map("map", {
+  center: [29.710, -95.376],
+  zoom: 10
+});
 
-// creating map of Houston: 
-// Creating map object
-var h_town_map = L.map("map", {
-    center: [29.7604, -95.3698],
-    zoom: 11
-  });
+// Add a tile layer
+L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+  attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+  maxZoom: 18,
+  id: "mapbox.streets",
+  accessToken: API_KEY
+}).addTo(crimeMap);
+
+// Store API query variables
+var baseURL = "https://moto.data.socrata.com/resource/p6kq-vsa3.json";
+// var date = "$where=incident_datetime between'2018-01-01T12:00:00' and '2019-10-10T14:00:00'";
+// var incident = "$where=incident_type_primary"
+// var limit = "&$limit=100";
   
-  // Adding tile layer
-  L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-    attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-    maxZoom: 18,
-    id: "mapbox.streets",
-    accessToken: API_KEY
-  }).addTo(h_town_map);
+  
+  // Assemble API query URL
+// var url = baseURL + date + limit;
+// console.log(url)
+  
+  // Grab the data with d3
+d3.json(baseURL, response => {
+  
+    // Create a new marker cluster group
+  let markers = L.markerClusterGroup();
+  
+console.log(response)
+console.log(response.length)
 
+    // Loop through data
+  for (var i = 0; i <= 100; i++) {
+  
+      // Set the data location property to a variable
+    var location = response[i].location;
+  
+      // Check for location property
+    if (location) {
+  
+        // Add a new marker to the cluster group and bind a pop-up
+      markers.addLayer(L.marker([location.coordinates[1], location.coordinates[0]])
+        .bindPopup("<h2>" + response[i].parent_incident_type +
+        "</h2><hr><p>" + response[i].address_1 + "<p>" + response[i].incident_datetime));
+      }
+  
+    }
+  
+    // Add our marker cluster layer to the map
+  crimeMap.addLayer(markers);
+  
+});
 
-var link = "data.h_town.geojson";
+var link = "data/h_town.geojson";
 
   // Grabbing our GeoJSON data..
 d3.json(link, function(data) {
   // Creating a GeoJSON layer with the retrieved data
-  L.geoJson(data).addTo(h_town_map);
+  L.geoJson(data).addTo(crimeMap);
 });
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-// Each police station object will contain the location, station name, address, legend
 
 var stations = [
   {
@@ -163,82 +195,19 @@ var stations = [
   }
 ];
 
-
 for (var i = 0; i < stations.length; i++) {
   var station = stations[i];
   var policeWomanIcon = new L.Icon({
-    iconUrl: '../data/policeFemale.png',
+    iconUrl: 'data/policeFemale.png',
     // shadowUrl: 'https://i7.pngguru.com/preview/616/398/526/circle-gradient-cartesian-coordinate-system-shadow-shadows.jpg',
-    iconSize: [30, 30],
+    iconSize: [20, 20],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
   });  
   console.log(station.location)
   L.marker(station.location, {icon: policeWomanIcon}) 
-    .bindPopup("<h1>" + station.stationName + "</h1> <hr> <h3>Aaddress & Info: " + station.legend + "</h3>")
-    .addTo(h_town_map);
-}
+    .bindPopup("<h1>" + station.stationName + "</h1> <hr> <h3>Address & Info: " + station.legend + "</h3>")
+    .addTo(crimeMap);
+};
 
->>>>>>> isoto
-
-<<<<<<< HEAD
->>>>>>> isoto
-var parser = new OpenLayer.Format.GeoJSON(),
-    features;
-
-new Shapefile({
-<<<<<<< HEAD
-    shp: "Houston_Police_Division/Houston_Police_Division.shp",
-    dbf: "Houston_Police_Division/Houston_Police_Division.dbf"
-}, function (data) {
-    features = parser.read(data.geojson);
-});
-
-=======
-    shp: "Houston_Police_Division.shp",
-    dbf: "Houston_Police_Division.dbf"
-}, function (data) {
-    features = parser.read(h_town.geojson);
-});
-=======
->>>>>>> isoto
-
-
-// var parser = new OpenLayer.Format.GeoJSON(),
-//     features;
-
-// new Shapefile({
-//     shp: "Houston_Police_Division.shp",
-//     dbf: "Houston_Police_Division.dbf"
-// }, function (data) {
-//     features = parser.read(h_town.geojson);
-// });
-
-// var shapefile = new L.Shapefile("Housotn_Police_Divisions.zip", {
-//   onEachFeature: function(feature,layer) {
-//     if (feature.properties) {
-//       layer.bindPopup(Object.keys(feature.properties).map(function(k){
-//         return k + ":" + feature.properties[k];
-//       }))
-//     }
-//   }
-// });
-
-// shapefile.addTo(h_town_map);
-// shapefile.once("data:loaded": function(){
-//   console.log("finished loaded shapefile");
-// });
-
- 
-// shapefile.open("Houston_Police_Division/HoustonPoliceDivision.shp")
-//   .then(source => source.read()
-//     .then(function log(result) {
-//       if (result.done) return;
-//       console.log(result.value);
-//       return source.read().then(log);
-//     }))
-//   .catch(error => console.error(error.stack));
-
-//   var Shapefile = new L.Shapefile("Houston_Police_Division.zip"); shpfile.addTo(h_town_map);
-
->>>>>>> isoto
+  
