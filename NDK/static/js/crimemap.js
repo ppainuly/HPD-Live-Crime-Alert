@@ -52,14 +52,14 @@ console.log(response.length)
     // Add our marker cluster layer to the map
   crimeMap.addLayer(markers);
   
-  });
+});
 
-var link = "data.h_town.geojson";
+var link = "data/h_town.geojson";
 
   // Grabbing our GeoJSON data..
 d3.json(link, function(data) {
   // Creating a GeoJSON layer with the retrieved data
-  L.geoJson(data).addTo(h_town_map);
+  L.geoJson(data).addTo(crimeMap);
 });
 
 var stations = [
@@ -198,16 +198,16 @@ var stations = [
 for (var i = 0; i < stations.length; i++) {
   var station = stations[i];
   var policeWomanIcon = new L.Icon({
-    iconUrl: '../data/policeFemale.png',
+    iconUrl: 'data/policeFemale.png',
     // shadowUrl: 'https://i7.pngguru.com/preview/616/398/526/circle-gradient-cartesian-coordinate-system-shadow-shadows.jpg',
-    iconSize: [30, 30],
+    iconSize: [20, 20],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
   });  
   console.log(station.location)
   L.marker(station.location, {icon: policeWomanIcon}) 
-    .bindPopup("<h1>" + station.stationName + "</h1> <hr> <h3>Aaddress & Info: " + station.legend + "</h3>")
-    .addTo(h_town_map);
+    .bindPopup("<h1>" + station.stationName + "</h1> <hr> <h3>Address & Info: " + station.legend + "</h3>")
+    .addTo(crimeMap);
 };
 
   
