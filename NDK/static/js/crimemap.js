@@ -43,7 +43,8 @@ console.log(response.length)
   
         // Add a new marker to the cluster group and bind a pop-up
       markers.addLayer(L.marker([location.coordinates[1], location.coordinates[0]])
-        .bindPopup(response[i].incident_type_primary));
+        .bindPopup("<h2>" + response[i].parent_incident_type +
+        "</h2><hr><p>" + response[i].address_1 + "<p>" + response[i].incident_datetime));
       }
   
     }
