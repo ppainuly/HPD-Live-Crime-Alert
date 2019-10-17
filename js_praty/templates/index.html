@@ -12,12 +12,13 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
-    <link rel="stylesheet" href="../css/leaflet.extra-markers.min.css">
     <!--[if lte IE 8]><link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css" /><![endif]-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../css/leaflet-sidebar.css" />
       <!-- Our CSS -->
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/leaflet.extra-markers.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/leaflet-sidebar.css') }}">
+
 
     <style>
         body {
@@ -63,7 +64,7 @@
                     
                 </h1>
                 <!-- <div class="col-md-12"> -->
-                        <div class="blink_me" style="padding-top: 5px;padding-bottom:5px;"><span class="glyphicon glyphicon-time"></span> Live</div>
+                        <div class="blink_me" style="padding-top: 15px;padding-bottom:15px;font-size: 25px;body.color:red;"><span class="glyphicon glyphicon-time"></span> Live</div>
                         <div class="list-group">
 
                         </div>
@@ -93,13 +94,14 @@
     <a href="https://github.com/Turbo87/sidebar-v2/"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
-    <script src="../js/leaflet-sidebar.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script src="{{ url_for('static', filename='js/leaflet-sidebar.js') }}"></script>
+    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
   <!-- API key -->
-  <script type="text/javascript" src="../js/config.js"></script>
+  <script src="{{ url_for('static', filename='js/config.js') }}"></script>
   <!-- Our JS -->
-  <script src="../js/leaflet.extra-markers.min.js"></script>
-  <script type="text/javascript" src="../js/logic.js"></script>
+  <script src="{{ url_for('static', filename='js/leaflet.extra-markers.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/logic.js') }}"></script>
 <!-- 
     <script>
         var map = L.map('map');
