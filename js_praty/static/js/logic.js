@@ -347,7 +347,7 @@ let incidentType = []
 
       $('.list-group-item').bind('mouseover',function(){
         console.log("Event clicked")
-        var index = $( "a" ).index( this ) - 3;
+        var index = $( "a" ).index( this ) - 4;
 
         latlang = markerArray[index-1].getLatLng()
         // var numMarker = L.ExtraMarkers.icon({
