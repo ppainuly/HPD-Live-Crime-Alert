@@ -26,7 +26,7 @@
             margin: 0;
         }
 
-        html, body, #map {
+        html, body{
             height: 100%;
             font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
         }
@@ -44,7 +44,7 @@
 
         </div>
     </div>
-    <div id="map" class="sidebar-map">
+
 
             <div id="sidebar" class="sidebar collapsed">
                 <!-- Nav tabs -->
@@ -62,7 +62,7 @@
                 </div>
 
                 <!-- Tab panes -->
-                <div class="sidebar-content">
+                <div class="sidebar-content" >
                     <div class="sidebar-pane" id="home">
                         <h1 class="sidebar-header">
                             Live Crime Incidents 
@@ -70,10 +70,18 @@
                             
                         </h1>
                         <!-- <div class="col-md-12"> -->
-                                <div class="blink_me" style="padding-top: 15px;padding-bottom:15px;font-size: 25px;body.color:red;"><span class="glyphicon glyphicon-time"></span> Live</div>
-                                <div class="list-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <div class="blink_me" style="padding-top: 15px;padding-bottom:15px;font-size: 25px;color:red;"><span class="glyphicon glyphicon-time"></span> Live</div>
+                                    </div>
+                                <div class="panel-body" >
+                                    <div class="list-group" >
+
+                                    </div>
+                                </div>
 
                                 </div>
+
                         
                     </div>
 
@@ -90,8 +98,15 @@
                     </div>
                 </div>
             </div>
-
+            <div id="map" class="sidebar-map">
 </div>
+<div class="container" style="height:10px;">
+    <div class="panel-body" >
+        <div class="row">
+        </div>
+        <div class="row">Crime Tracker - Houston</div>
+
+    </div>
 
 
     
